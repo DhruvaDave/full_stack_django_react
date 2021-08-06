@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  web:
+    build: backend/.
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/:/code
+    container_name: api
+    restart: on-failure
+  frontend:
+    build: frontend/.
+    stdin_open: true
+    container_name: ui
+    links:
+      - "web:api"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/:/app

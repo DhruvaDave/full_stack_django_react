@@ -1,0 +1,13 @@
+.App {
+  padding: 1em;
+}
+
+.App-logo img {
+  height: 20vmin;
+  max-width: 200px;
+  pointer-events: none;
+}
+
+.App-link {
+  color: #61dafb;
+}
