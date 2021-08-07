@@ -3,11 +3,12 @@ import { API_BASE_URL } from "../App";
 import axios from "axios";
 import DateTimePicker from "react-datetime-picker";
 
-const createAppointment = async (startTime, endTime) => {
+const createAppointment = async (startTime, endTime, patientId) => {
   try {
     const result = await axios.post(API_BASE_URL + "/appointments/", {
       start_time: startTime,
       end_time: endTime,
+      patient_pk: patientId,
     });
     return result.data;
   } catch (e) {
@@ -19,6 +20,7 @@ const createAppointment = async (startTime, endTime) => {
 const CreateAppointment = ({ refetchAppointments }) => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
+  const [patientId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
@@ -26,7 +28,7 @@ const CreateAppointment = ({ refetchAppointments }) => {
     setIsLoading(true);
     event.preventDefault();
     setSubmitMessage("");
-    const result = await createAppointment(startTime, endTime);
+    const result = await createAppointment(startTime, endTime, patientId);
     if (!result) {
       setSubmitMessage("Unable to create Appointment");
       return;
