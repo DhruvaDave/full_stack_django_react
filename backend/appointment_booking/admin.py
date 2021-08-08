@@ -9,15 +9,7 @@ class AppointmentAdmin(admin.ModelAdmin):
     model = Appointment
     
     list_display = ('start_time', 'end_time', 'patient_pk')
-    exclude = [('id')]
-    # actions = ['delete_model']
-
-    # def delete_model(self, request, queryset):
-    #     print("------delete-------queryset-",queryset)
-    #     for obj in queryset:
-    #         obj.patient_pk = None
-    #         obj.delete()
-    
+    exclude = [('id')]    
 
 
 admin.site.register(Appointment, AppointmentAdmin)
